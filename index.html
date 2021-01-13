@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <label for="hy">Enter your age</label>
+    <input type="number" id="humanYears">
+    <label for="months">Months</label>
+    <input type="number" id="months" min="0" max="12">
+    <button id=calculateAge>Calculate</button>
+    <h1>Dog age is: 
+        <span id="resultYears"></span> 
+        <span id="resultMonths"></span>
+        <!-- <span id="resultDays"></span>  -->
+    </h1>
+
+    <script src="scripts/main.js"></script>
+    <script type="text/javascript">
+        function dogYears() {
+            var dogYears = 0;
+            var dogMonths = 0;
+            var humanYears = parseInt(document.querySelector("#humanYears").value);
+            var months = parseInt(document.querySelector("#months").value);
+            months += (humanYears*12);
+
+            if(months<=24){
+                dogMonths = months * 10.5 ;
+            }else{
+                dogMonths = ((months-24) * 4) + (24 * 10.5);
+            }
+
+            var mMonths = ((dogMonths/12)- parseInt(dogMonths/12))* 12;
+            
+            document.querySelector("#resultYears").textContent = parseInt(dogMonths/12)+ " years";
+            document.querySelector("#resultMonths").textContent = parseInt(mMonths) + " months";
+            
+            // document.querySelector("#resultDays").textContent = (mMonths - parseInt(mMonths)) *30 + " days";
+            
+        }
+        document.querySelector("#calculateAge").addEventListener("click", dogYears);
+    </script>
+</body>
+
+</html>
